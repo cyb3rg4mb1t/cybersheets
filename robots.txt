@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cyb3rg4mb1t.github.io/cybersheets/sitemap.xml
