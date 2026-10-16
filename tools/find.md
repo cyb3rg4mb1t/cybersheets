@@ -79,6 +79,10 @@ find / -type f -name "*.txt" -exec grep -iE "pass|pwd|secret|token" {} + 2>/dev/
 # The multi-name + decode pattern from the prompt
 find / -type f \( -name "file1" -o -name "file2" -o -name "file3" \) -exec base64 -d {} \; 2>/dev/null
 
+# Find text files of an exact byte size, not executable, then dump them (CTF / recon)
+find . -type f -size 1033c ! -perm /a+x -exec sh -c 'file -b "$0" | grep -qi "text"' {} \; -print | xargs -d '\n' cat
+find . -type f -size 1033c ! -perm /a+x -exec sh -c 'file -b "$0" | grep -qi "text"' {} \; -exec cat {} \;
+
 # Recently modified files (what did we/they just touch?)
 find / -type f -mmin -10 2>/dev/null
 find /var/www -type f -mtime -1 2>/dev/null
