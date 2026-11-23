@@ -44,6 +44,10 @@ git show <sha>                        # one commit's diff
 git log -S 'password'                 # commits that added/removed a string ("pickaxe")
 git log --all --oneline | wc -l       # how deep is this history
 git grep 'API_KEY' $(git rev-list --all)   # search a term across ALL history
+git branch -r                         # remote branches — secrets often hide off master
+git checkout <sha|branch|tag>         # check out an old state to inspect it
+git tag && git show <tag>             # tags can point at commits not on any branch
+git clone ssh://user@host:2220/path repo   # clone a repo exposed over SSH (custom port)
 ```
 
 ## Recon: exposed `.git` on a web server

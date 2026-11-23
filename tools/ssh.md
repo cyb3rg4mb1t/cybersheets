@@ -17,6 +17,11 @@ tags: [ssh, tunnel, portforward, socks, pivot, proxyjump, keys, RTFM]
 ssh user@host
 ssh -p 2222 user@host                      # non-default port
 ssh -i ~/.ssh/id_ed25519 user@host          # specific key
+chmod 600 ~/.ssh/id_*                        # keys MUST be 0600 or ssh refuses them
+ssh user@host -t "bash --norc"               # force a shell / run a command (bypass a login shell)
+ssh user@host 'id; uname -a'                 # run a remote command and exit
+ssh -p 2220 user@host                        # custom port (and in URL form below)
+ssh://user@host:2220/path                    # URL form used by git clone over SSH
 ssh-keygen -t ed25519 -C "me@example"       # generate a key pair
 ssh-copy-id user@host                        # install your pubkey on the host
 ssh -v user@host                             # verbose (debug auth)

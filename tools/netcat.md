@@ -21,6 +21,15 @@ nc -zv target 20-25                 # -z: just test ports (mini scan)
 nc -u target 53                     # UDP
 ```
 
+## Talk to a service in a loop (brute)
+
+```bash
+# Send one guess per line; -q2 quits 2s after EOF so the pipe closes
+echo "hello" | nc -q2 localhost 30000              # single interaction
+for i in {0000..9999}; do echo "$SECRET $i"; done \
+  | nc -q2 localhost 30002 | grep -v "Wrong!"      # brute a PIN, keep only the hit
+```
+
 ## Listener (server)
 
 ```bash
